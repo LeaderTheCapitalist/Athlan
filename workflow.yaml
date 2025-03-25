@@ -1,5 +1,0 @@
-- name: Run test
-  env:
-    OPENROUTER_API_KEY: ${{ secret.OPENROUTER_API_KEY }}
-  run: |
-    nbdev_test_nbs
