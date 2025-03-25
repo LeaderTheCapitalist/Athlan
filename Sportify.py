@@ -16,12 +16,12 @@ with st.form("inputs"):
     col1, col2 = st.columns(2)
     with col1:
         sport = st.text_input("Sport", placeholder="e.g., Wheelchair Basketball", key="sport")
-        difficulty = st.select_slider("Skill Level", ["Newbie", "Experienced", "Professional"])
+        difficulty = st.select_slider("Skill Level", ["Newbie", "Experienced", "Amateur", "Professional"])
     with col2:
         disability = st.text_input("Disabilities", placeholder="e.g., Amputee, Visual Impairment")
         equipment = st.text_input("Equipment Availibity", placeholder="e.g., No equipment available, Access to equipment")
         culture = st.text_input("Cultural Preferences", placeholder="e.g., Halal, Kosher")
-        diet = st.text_input("Diet Plan", placeholder="e.g., High-protine, Vegetarian")
+        diet = st.text_input("Diet Plan", placeholder="e.g., High protein, Vegetarian")
 
     generate_btn = st.form_submit_button("Generate Plan", type="primary")
 
