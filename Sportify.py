@@ -4,7 +4,7 @@ import json
 from datetime import datetime
 
 # ===== ENTER YOUR API KEY BELOW =====
-OPENROUTER_API_KEY = "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"  # Replace with your actual key from https://openrouter.ai/keys
+OPENROUTER_API_KEY = "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"  # Replace with your actual key from https://openrouter.ai/keys
 
 # Set page config FIRST
 st.set_page_config(page_title="Sportify AI - Your AI Fitness Coach", layout="wide")
@@ -32,7 +32,7 @@ st.markdown("""
 # Language dictionary
 translations = {
     "English": {
-        "title": "Sportify",
+        "title": "Sport",
         "subtitle": "Create your personalized training plan",
         "sport_placeholder": "e.g., Football, Soccer",
         "skill_level": "Skill Level",
@@ -53,8 +53,8 @@ translations = {
         "error_message": "Failed to generate plan. Check your API key and try again.",
         "prompt_instruction": "Respond in English."
     },
-    "Russian": {
-        "title": "Sportify",
+    "Русский": {
+        "title": "Спорт",
         "subtitle": "Создайте свой персональный план тренировок",
         "sport_placeholder": "напр., Футбол, Волейбол",
         "skill_level": "Уровень подготовки",
@@ -75,8 +75,8 @@ translations = {
         "error_message": "Не удалось создать план. Проверьте API ключ и попробуйте снова.",
         "prompt_instruction": "Отвечайте на русском языке."
     },
-    "Uzbek": {
-        "title": "Sportify",
+    "O`zbek": {
+        "title": "Sport",
         "subtitle": "Shaxsiy mashq rejangizni yarating",
         "sport_placeholder": "masalan, Futbol, Voleybol",
         "skill_level": "Mahorat darajasi",
