@@ -8,13 +8,7 @@ PROGRESS_SHIMMER_SPEED = "2"  # "0.5s" for faster, "3s" for slower shimmer
 PROGRESS_FILL_SPEED = 0.2  # 0.05 for faster, 0.2 for slower filling
 
 # Load environment variables
-def read_env_var(var_name, env_file=".env"):
-    if os.path.exists(env_file):
-        with open(env_file) as f:
-            for line in f:
-                if line.startswith(var_name + "="):
-                    return line.strip().split("=", 1)[1]
-    return None
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 OPENROUTER_API_KEY = read_env_var("OPENROUTER_API_KEY")
 
