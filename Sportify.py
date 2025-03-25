@@ -3,7 +3,7 @@ import requests
 from datetime import datetime
 
 # ===== ENTER YOUR API KEY BELOW =====
-OPENROUTER_API_KEY = "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"  # Replace with your actual key from https://openrouter.ai/keys
+OPENROUTER_API_KEY = "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"  # Replace with your actual key from https://openrouter.ai/keys
 
 # App UI
 st.set_page_config(page_title="Sportify - AI Fitness Coach", layout="wide")
