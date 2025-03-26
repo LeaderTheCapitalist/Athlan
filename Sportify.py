@@ -72,7 +72,7 @@ translations = {
         "generate_btn": "Generate Plan",
         "loading_text": "🧠 Designing your custom training plan...",
         "api_warning": "Please add your OpenRouter API key in the code!",
-        "plan_title": "Your {} Plan ({})",
+        "plan_title": "Your Training Plan ({})",
         "save_btn": "Save Plan",
         "translate_btn": "Translate Plan",
         "error_message": "Failed to generate plan. Check your API key and try again.",
@@ -98,7 +98,7 @@ translations = {
         "generate_btn": "Создать план",
         "loading_text": "🧠 Создаем ваш индивидуальный план тренировок...",
         "api_warning": "Пожалуйста, добавьте ваш API ключ в код!",
-        "plan_title": "Ваш план по {} ({})",
+        "plan_title": "Ваш план тренировок ({})",
         "save_btn": "Сохранить план",
         "translate_btn": "Перевести план",
         "error_message": "Не удалось создать план. Проверьте API ключ и попробуйте снова.",
@@ -124,7 +124,7 @@ translations = {
         "generate_btn": "Reja yaratish",
         "loading_text": "🧠 Siz uchun maxsus mashq rejasi tayyorlanmoqda...",
         "api_warning": "Iltimos, kodga OpenRouter API kalitingizni qo`shing!",
-        "plan_title": "Sizning {} rejangiz ({})",
+        "plan_title": "Sizning mashq rejangiz ({})",
         "save_btn": "Rejani saqlash",
         "translate_btn": "Rejani tarjima qilish",
         "error_message": "Reja yaratib bo`lmadi. API kalitingizni tekshirib, qayta urinib ko`ring.",
@@ -281,6 +281,7 @@ if generate_btn and sport:
         3. Cooldown (static stretches)
         4. Safety precautions
         5. Equipment suggestions
+        6. Proper nutrition according to diet type
 
         Format in markdown with bullet points (with •).
         Make the plan for {duration} days with different plans for everyday.
