@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import time
+import json
 import os
 
 # ===== ANIMATION SPEED CONTROLS =====
