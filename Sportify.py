@@ -59,7 +59,7 @@ translations = {
         "sport": "Sport",
         "sport_placeholder": "e.g., Football, Soccer",
         "skill_level": "Skill Level",
-        "skill_levels": ["Beginner", "Intermediate", "Advanced", "Professional"],
+        "skill_levels": ["Beginner", "Amateur", "Intermediate", "Advanced", "Professional"],
         "duration": "Training duration",
         "disabilities": "Disabilities",
         "disabilities_placeholder": "e.g., Amputee, Visual Impairment",
@@ -85,7 +85,7 @@ translations = {
         "sport": "Спорт",
         "sport_placeholder": "напр., Футбол, Волейбол",
         "skill_level": "Уровень подготовки",
-        "skill_levels": ["Новичок", "Любитель", "Опытный", "Профессионал"],
+        "skill_levels": ["Новичок", "Любитель", "Средний", "Опытный", "Профессионал"],
         "duration": "Продолжительность обучения",
         "disabilities": "Ограничения",
         "disabilities_placeholder": "напр., Ампутация, Нарушение зрения",
@@ -111,10 +111,10 @@ translations = {
         "sport": "Sport",
         "sport_placeholder": "masalan, Futbol, Voleybol",
         "skill_level": "Mahorat darajasi",
-        "skill_levels": ["Boshlang'ich", "O'rta", "Yuqori", "Professional"],
+        "skill_levels": ["Boshlang`ich", "Havaskor", "O`rta", "Yuqori", "Professional"],
         "duration": "Mashg`ulotlar davomiyligi",
         "disabilities": "Nogironliklar",
-        "disabilities_placeholder": "masalan, amputatsiya, ko'rish qiyinchiligi",
+        "disabilities_placeholder": "masalan, amputatsiya, ko`rish qiyinchiligi",
         "equipment": "Mavjud jihozlar",
         "equipment_placeholder": "masalan, Jihozlar mavjud emas, Jihozlar yetarli",
         "culture": "Madaniy/diniy afzalliklar",
@@ -128,7 +128,7 @@ translations = {
         "save_btn": "Rejani saqlash",
         "translate_btn": "Rejani tarjima qilish",
         "error_message": "Reja yaratib bo`lmadi. API kalitingizni tekshirib, qayta urinib ko`ring.",
-        "prompt_instruction": "Javobni o'zbek tilida bering.",
+        "prompt_instruction": "Javobni o`zbek tilida bering.",
         "translation_loading": "Rejangiz tarjima qilinmoqda..."
     }
 }
@@ -285,7 +285,7 @@ if generate_btn and sport:
 
         Format in markdown with bullet points (with •).
         Make the plan for {duration} days with different plans for everyday.
-        You can group days (like day 5-8) if the training is for a long period. But don't miss any day! Include everyday!"""
+        You can group days (like day 5-8) if the training is for a long period. But don't miss any day! Include every day!"""
 
         result = call_deepseek(prompt)
 
