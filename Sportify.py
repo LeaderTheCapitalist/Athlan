@@ -2,15 +2,13 @@ import streamlit as st
 import requests
 import time
 import os
-from itertools import cycle
 
-# ANIMATION CONTROLS
+# ===== ANIMATION SPEED CONTROLS =====
 PROGRESS_SHIMMER_SPEED = "2"  # "0.5s" for faster, "3s" for slower shimmer
 PROGRESS_FILL_SPEED = 0.2  # 0.05 for faster, 0.2 for slower filling
-LOADING_ANIMATION_SPEED = 0.3  # Time between animation frames
 
-# Secure API key handling (Streamlit Secrets only)
-OPENROUTER_API_KEY = st.secrets["OPENROUTER_API_KEY"]
+# Secure API key
+OPENROUTER_API_KEY = st.secrets("OPENROUTER_API_KEY")
 
 # Set page config
 st.set_page_config(page_title="Sportify AI - Your AI Fitness Coach", layout="wide")
@@ -49,12 +47,6 @@ st.markdown(f"""
         gap: 10px;
         margin-top: 20px;
     }}
-    
-    /* Loading animation */
-    .loading-text {{
-        font-size: 1.1rem;
-        margin-bottom: 1rem;
-    }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -77,7 +69,7 @@ translations = {
         "diet": "Diet Plan",
         "diet_placeholder": "e.g., High protein, Vegetarian",
         "generate_btn": "Generate Plan",
-        "loading_text": "🧠 Designing your custom training plan",
+        "loading_text": "🧠 Designing your custom training plan...",
         "api_warning": "Please add your OpenRouter API key in the code!",
         "plan_title": "Your {} Plan ({})",
         "save_btn": "Save Plan",
@@ -103,7 +95,7 @@ translations = {
         "diet": "План питания",
         "diet_placeholder": "напр., Высокобелковая, Вегетарианская",
         "generate_btn": "Создать план",
-        "loading_text": "🧠 Создаем ваш индивидуальный план тренировок",
+        "loading_text": "🧠 Создаем ваш индивидуальный план тренировок...",
         "api_warning": "Пожалуйста, добавьте ваш API ключ в код!",
         "plan_title": "Ваш план по {} ({})",
         "save_btn": "Сохранить план",
@@ -129,7 +121,7 @@ translations = {
         "diet": "Ovqatlanish rejasi",
         "diet_placeholder": "masalan, Oqsilli, Vegetarian",
         "generate_btn": "Reja yaratish",
-        "loading_text": "🧠 Siz uchun maxsus mashq rejasi tayyorlanmoqda",
+        "loading_text": "🧠 Siz uchun maxsus mashq rejasi tayyorlanmoqda...",
         "api_warning": "Iltimos, kodga OpenRouter API kalitingizni qo`shing!",
         "plan_title": "Sizning {} rejangiz ({})",
         "save_btn": "Rejani saqlash",
@@ -140,9 +132,6 @@ translations = {
     }
 }
 
-# Animation frames
-loading_frames = ["", ".", "..", "...", "...."]
-
 # Initialize session state
 if 'original_plan' not in st.session_state:
     st.session_state.original_plan = None
@@ -152,8 +141,6 @@ if 'current_language' not in st.session_state:
     st.session_state.current_language = "English"
 if 'translation_in_progress' not in st.session_state:
     st.session_state.translation_in_progress = False
-if 'generation_in_progress' not in st.session_state:
-    st.session_state.generation_in_progress = False
 
 # Language selection
 with st.sidebar:
@@ -178,28 +165,11 @@ with st.form("inputs"):
         diet = st.text_input(lang["diet"], placeholder=lang["diet_placeholder"])
     generate_btn = st.form_submit_button(lang["generate_btn"], type="primary")
 
-# Animated loading text function
-def show_loading_animation(text, key):
-    loading_placeholder = st.empty()
-    for frame in cycle(loading_frames):
-        if not st.session_state.get(key, False):
-            break
-        loading_placeholder.markdown(f"<div class='loading-text'>{text}{frame}</div>", unsafe_allow_html=True)
-        time.sleep(LOADING_ANIMATION_SPEED)
-    loading_placeholder.empty()
-
 # API Call Function
 def call_deepseek(prompt):
-    st.session_state.generation_in_progress = True
     progress_bar = st.progress(0)
-    
-    # Start loading animation in a separate thread
-    import threading
-    animation_thread = threading.Thread(
-        target=show_loading_animation,
-        args=(lang["loading_text"], "generation_in_progress")
-    )
-    animation_thread.start()
+    progress_text = st.empty()
+    progress_text.text(lang["loading_text"])
 
     try:
         # Initial progress
@@ -248,23 +218,17 @@ def call_deepseek(prompt):
         st.error(f"API Error: {str(e)}")
         return None
     finally:
-        st.session_state.generation_in_progress = False
+        time.sleep(0.3)
         progress_bar.empty()
-        animation_thread.join()
+        progress_text.empty()
 
 # Translation Function
 def translate_plan(plan_text, target_language):
-    st.session_state.translation_in_progress = True
-    
-    # Start loading animation in a separate thread
-    import threading
-    animation_thread = threading.Thread(
-        target=show_loading_animation,
-        args=(translations[st.session_state.current_language]["translation_loading"], "translation_in_progress")
-    )
-    animation_thread.start()
-    
     try:
+        st.session_state.translation_in_progress = True
+        progress_text = st.empty()
+        progress_text.text(translations[st.session_state.current_language]["translation_loading"])
+        
         prompt = f"Translate this fitness plan to {target_language}. Keep all markdown formatting exactly the same, only translate the text:\n\n{plan_text}"
         
         headers = {
@@ -296,7 +260,7 @@ def translate_plan(plan_text, target_language):
         return None
     finally:
         st.session_state.translation_in_progress = False
-        animation_thread.join()
+        progress_text.empty()
 
 # Generate Plan
 if generate_btn and sport:
