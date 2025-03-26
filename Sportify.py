@@ -9,7 +9,7 @@ PROGRESS_SHIMMER_SPEED = "2"  # "0.5s" for faster, "3s" for slower shimmer
 PROGRESS_FILL_SPEED = 0.2  # 0.05 for faster, 0.2 for slower filling
 
 # Secure API key
-OPENROUTER_API_KEY = st.secrets("OPENROUTER_API_KEY")
+OPENROUTER_API_KEY = st.secrets["OPENROUTER_API_KEY"]
 
 # Set page config
 st.set_page_config(page_title="Sportify AI - Your AI Fitness Coach", layout="wide")
