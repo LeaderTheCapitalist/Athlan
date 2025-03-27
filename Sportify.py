@@ -269,8 +269,7 @@ if generate_btn and sport:
         6. Proper nutrition according to diet type
 
         Format in markdown with bullet points (with •).
-        Make the plan for {duration} days with different plans for everyday.
-        You can group days (like day 5-8) if the training is for a long period. But don't miss any day! Include every day!"""
+        Make the plan for {duration} days with different plans for groups of days (like Day 6-9)."""
 
         result = call_deepseek(prompt)
 
