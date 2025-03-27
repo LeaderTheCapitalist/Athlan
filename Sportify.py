@@ -4,17 +4,13 @@ import time
 import json
 import os
 
-# ===== ANIMATION SPEED CONTROLS =====
-PROGRESS_SHIMMER_SPEED = "2"  # "0.5s" for faster, "3s" for slower shimmer
-PROGRESS_FILL_SPEED = 0.2  # 0.05 for faster, 0.2 for slower filling
+PROGRESS_SHIMMER_SPEED = "2"
+PROGRESS_FILL_SPEED = 0.2
 
-# Secure API key
 OPENROUTER_API_KEY = st.secrets["OPENROUTER_API_KEY"]
 
-# Set page config
 st.set_page_config(page_title="Sportify AI - Your AI Fitness Coach", layout="wide")
 
-# Custom CSS with adjustable animation
 st.markdown(f"""
 <style>
     /* Cursor styles */
@@ -51,7 +47,6 @@ st.markdown(f"""
 </style>
 """, unsafe_allow_html=True)
 
-# Language dictionary
 translations = {
     "English": {
         "title": "Sportify",
@@ -133,7 +128,6 @@ translations = {
     }
 }
 
-# Initialize session state
 if 'original_plan' not in st.session_state:
     st.session_state.original_plan = None
 if 'current_plan' not in st.session_state:
@@ -143,16 +137,13 @@ if 'current_language' not in st.session_state:
 if 'translation_in_progress' not in st.session_state:
     st.session_state.translation_in_progress = False
 
-# Language selection
 with st.sidebar:
     language = st.selectbox("Language | Til | Язык", ["English", "O`zbek", "Русский"])
 lang = translations[language]
 
-# App UI
 st.title(lang["title"])
 st.caption(lang["subtitle"])
 
-# User Inputs
 with st.form("inputs"):
     col1, col2 = st.columns(2)
     with col1:
@@ -166,14 +157,12 @@ with st.form("inputs"):
         diet = st.text_input(lang["diet"], placeholder=lang["diet_placeholder"])
     generate_btn = st.form_submit_button(lang["generate_btn"], type="primary")
 
-# API Call Function
 def call_deepseek(prompt):
     progress_bar = st.progress(0)
     progress_text = st.empty()
     progress_text.text(lang["loading_text"])
 
     try:
-        # Initial progress
         for i in range(10, 31, 5):
             progress_bar.progress(i)
             time.sleep(PROGRESS_FILL_SPEED)
@@ -199,7 +188,6 @@ def call_deepseek(prompt):
             timeout=45
         )
 
-        # Main progress
         for i in range(35, 81, 5):
             progress_bar.progress(i)
             time.sleep(PROGRESS_FILL_SPEED)
@@ -209,10 +197,9 @@ def call_deepseek(prompt):
 
         time.sleep(3)
 
-        # Final progress
         for i in range(85, 101, 3):
             progress_bar.progress(i)
-            time.sleep(PROGRESS_FILL_SPEED * 0.6)  # Slightly faster finish
+            time.sleep(PROGRESS_FILL_SPEED * 0.6)
 
         return result
     except requests.exceptions.RequestException as e:
@@ -223,7 +210,6 @@ def call_deepseek(prompt):
         progress_bar.empty()
         progress_text.empty()
 
-# Translation Function
 def translate_plan(plan_text, target_language):
     try:
         st.session_state.translation_in_progress = True
@@ -263,7 +249,6 @@ def translate_plan(plan_text, target_language):
         st.session_state.translation_in_progress = False
         progress_text.empty()
 
-# Generate Plan
 if generate_btn and sport:
     if not OPENROUTER_API_KEY or OPENROUTER_API_KEY == "your_api_key_here":
         st.warning(lang["api_warning"])
@@ -295,20 +280,17 @@ if generate_btn and sport:
             st.session_state.current_plan = plan
             st.session_state.current_language = language
 
-# Display Plan
 if st.session_state.current_plan:
     st.subheader(translations[st.session_state.current_language]["plan_title"].format(sport, difficulty))
     
     with st.container(border=True):
         st.markdown(st.session_state.current_plan)
     
-    # Translation options - exclude current language
     translate_options = [lang for lang in translations.keys() if lang != st.session_state.current_language]
     selected_translation = st.selectbox(lang["translate_btn"], translate_options)
     
     col1, col2 = st.columns(2)
     with col1:
-        # Download as TXT file
         st.download_button(
             label=translations[st.session_state.current_language]["save_btn"],
             data=st.session_state.current_plan,
