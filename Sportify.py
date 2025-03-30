@@ -53,7 +53,7 @@ translations = {
         "sport_placeholder": "e.g., Football, Soccer",
         "skill_level": "Skill Level",
         "skill_levels": ["Beginner", "Amateur", "Intermediate", "Advanced", "Professional"],
-        "duration": "Training duration (days)",
+        "duration": "Training duration",
         "disabilities": "Disabilities",
         "disabilities_placeholder": "e.g., Amputee, Visual Impairment",
         "equipment": "Equipment Availability",
@@ -79,7 +79,7 @@ translations = {
         "sport_placeholder": "напр., Футбол, Волейбол",
         "skill_level": "Уровень подготовки",
         "skill_levels": ["Новичок", "Любитель", "Средний", "Опытный", "Профессионал"],
-        "duration": "Продолжительность обучения (дней)",
+        "duration": "Продолжительность обучения",
         "disabilities": "Ограничения",
         "disabilities_placeholder": "напр., Ампутация, Нарушение зрения",
         "equipment": "Доступное оборудование",
@@ -105,7 +105,7 @@ translations = {
         "sport_placeholder": "masalan, Futbol, Voleybol",
         "skill_level": "Mahorat darajasi",
         "skill_levels": ["Boshlang`ich", "Havaskor", "O`rta", "Yuqori", "Professional"],
-        "duration": "Mashg`ulotlar davomiyligi (kun)",
+        "duration": "Mashg`ulotlar davomiyligi",
         "disabilities": "Nogironliklar",
         "disabilities_placeholder": "masalan, amputatsiya, ko`rish qiyinchiligi",
         "equipment": "Mavjud jihozlar",
@@ -136,7 +136,7 @@ if 'translation_in_progress' not in st.session_state:
     st.session_state.translation_in_progress = False
 
 with st.sidebar:
-    language = st.selectbox("Language | Til | Язык", ["English", "O`zbek", "Русский"])
+    language = st.radio("Language | Til | Язык", ["English", "O`zbek", "Русский"])
 lang = translations[language]
 
 st.title(lang["title"])
@@ -267,7 +267,8 @@ if generate_btn and sport:
         6. Proper nutrition according to diet type
 
         Format in markdown with bullet points (with •).
-        Make the plan for {duration} days with different plans for groups of days (like Day 6-9)."""
+        Make the plan for {duration} days with different plans for everyday.
+        You can group days (like day 5-8) if the training is for a long period. But don't miss any day! Include every day!"""
 
         result = call_deepseek(prompt)
 
