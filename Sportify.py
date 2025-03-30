@@ -1,8 +1,6 @@
 import streamlit as st
 import requests
 import time
-import json
-import os
 
 PROGRESS_SHIMMER_SPEED = "2"
 PROGRESS_FILL_SPEED = 0.2
