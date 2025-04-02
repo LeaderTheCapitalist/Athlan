@@ -173,7 +173,7 @@ def call_deepseek(prompt):
         }
 
         payload = {
-            "model": "deepseek/deepseek-r1:free",
+            "model": "deepseek/deepseek-v3:free",
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.7,
             "max_tokens": 1500
