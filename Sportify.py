@@ -268,7 +268,7 @@ if generate_btn and sport:
 
         Format in markdown with bullet points (with •).
         Make the plan for {duration} days with different plans for everyday.
-        You should group days (like day 5-8) and give general training instructions for all of the days in that range."""
+        You can group days (like day 5-8) if the training is for a long period. But don't miss any day! Include every day!"""
 
         result = call_deepseek(prompt)
 
