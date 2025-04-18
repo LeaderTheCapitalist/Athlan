@@ -47,7 +47,7 @@ st.markdown(f"""
 
 translations = {
     "English": {
-        "title": "Sportify",
+        "title": "Athlan",
         "subtitle": "Create your personalized training plan",
         "sport": "Sport",
         "sport_placeholder": "e.g., Football, Soccer",
@@ -73,7 +73,7 @@ translations = {
         "translation_loading": "Translating your plan..."
     },
     "Русский": {
-        "title": "Sportify",
+        "title": "Athlan",
         "subtitle": "Создайте свой персональный план тренировок",
         "sport": "Спорт",
         "sport_placeholder": "напр., Футбол, Волейбол",
@@ -99,7 +99,7 @@ translations = {
         "translation_loading": "Перевод вашего плана..."
     },
     "O`zbek": {
-        "title": "Sportify",
+        "title": "Athlan",
         "subtitle": "Shaxsiy mashq rejangizni yarating",
         "sport": "Sport",
         "sport_placeholder": "masalan, Futbol, Voleybol",
