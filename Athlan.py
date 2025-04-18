@@ -7,7 +7,7 @@ PROGRESS_FILL_SPEED = 0.2
 
 OPENROUTER_API_KEY = st.secrets["OPENROUTER_API_KEY"]
 
-st.set_page_config(page_title="Sportify AI - Your AI Fitness Coach", layout="wide")
+st.set_page_config(page_title="Athlan AI - Your AI Fitness Coach", layout="wide")
 
 st.markdown(f"""
 <style>
